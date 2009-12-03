@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <!-- ====================================================================== -->
+  <!--                                                                        -->
+  <!--  JBoss, the OpenSource J2EE webOS                                      -->
+  <!--                                                                        -->
+  <!--  Distributable under LGPL license.                                     -->
+  <!--  See terms of license at http://www.gnu.org.                           -->
+  <!--                                                                        -->
+  <!-- ====================================================================== -->
+
+  <!-- $Id$ -->
+  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <name>JBossOSGi Bundles - JTA</name>
+  <description>The JBossOSGi Transaction Service</description>
+  
+  <groupId>org.jboss.osgi.bundles</groupId>
+  <artifactId>jboss-osgi-jta</artifactId>
+  <packaging>bundle</packaging>
+  
+  <version>1.0.1-SNAPSHOT</version>
+  
+  <!-- Parent -->
+  <parent>
+    <groupId>org.jboss.osgi</groupId>
+    <artifactId>jboss-osgi-parent</artifactId>
+    <version>1.0.4</version>
+  </parent>
+
+  <!-- Subversion -->
+  <scm>
+    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/bundles/jta/trunk</connection>
+    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/bundles/jta/trunk</developerConnection>
+    <url>http://fisheye.jboss.com/qsearch/JBossOSGi</url>
+  </scm>
+
+  <!-- Properties -->
+  <properties>
+    <version.jboss.jta.api>1.0.1.GA</version.jboss.jta.api>
+    <version.jboss.jbossts>4.6.1.GA</version.jboss.jbossts>
+    <version.jboss.osgi.spi>1.0.3</version.jboss.osgi.spi>
+    <version.osgi>4.2.0</version.osgi>
+  </properties>
+  
+  <!-- Dependencies -->
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.osgi</groupId>
+      <artifactId>jboss-osgi-spi</artifactId>
+      <version>${version.jboss.osgi.spi}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.javaee</groupId>
+      <artifactId>jboss-transaction-api</artifactId>
+      <version>${version.jboss.jta.api}</version>
+    </dependency>
+    <dependency>
+      <groupId>jboss.jbossts</groupId>
+      <artifactId>jbossjts</artifactId>
+      <version>${version.jboss.jbossts}</version>
+    </dependency>
+    <dependency>
+      <groupId>jboss.jbossts</groupId>
+      <artifactId>jbossts-common</artifactId>
+      <version>${version.jboss.jbossts}</version>
+    </dependency>
+    
+    <!-- OSGi Dependencies -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>${version.osgi}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+      <version>${version.osgi}</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <!-- Test Dependecies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>${artifactId}</Bundle-SymbolicName>
+            <Bundle-Activator>org.jboss.osgi.jta.internal.TransactionServiceActivator</Bundle-Activator>
+            <Export-Package>
+              org.jboss.osgi.jta;version=${version}
+            </Export-Package>
+            <Private-Package>org.jboss.osgi.jta.internal</Private-Package>
+            <Import-Package>
+              javax.management, 
+              javax.naming, 
+              javax.naming.spi, 
+              javax.transaction;version="[1.0,1.1)", 
+              javax.xml.parsers, 
+              org.apache.commons.logging, 
+              org.jboss.osgi.spi.capability;version="[1.0,1.1)", 
+              org.jboss.osgi.spi.util;version="[1.0,1.1)", 
+              org.osgi.framework, 
+              org.w3c.dom,
+              
+              <!-- excludes -->
+              !com.arjuna.ArjunaOTS, 
+              !com.arjuna.ats.internal*,
+              !javax.resource.spi, 
+              !javax.resource.spi.work, 
+              !javax.sql, 
+              !javax.swing, 
+              !javax.swing.tree, 
+              !oracle.jdbc.xa, 
+              !oracle.jdbc.xa.client, 
+              !oracle.sql, 
+              !org.apache.log4j, 
+              !org.apache.xml.serialize, 
+              !org.omg.*, 
+            </Import-Package>
+            <Embed-Transitive>true</Embed-Transitive>
+            <Embed-Dependency>
+              jboss-transaction-api;inline=false,
+              jbossjts;inline=false,
+              jbossts-common;inline=false,
+            </Embed-Dependency>
+            <_exportcontents>
+              javax.transaction;version=1.0.1,
+            </_exportcontents>
+          </instructions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <!-- For some reason the distribution javadoc module needs this -->
+                  <file>target/${artifactId}-${version}-sources.jar</file>
+                  <classifier>sources</classifier>
+                  <type>jar</type>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>
