@@ -21,27 +21,27 @@
   <artifactId>jboss-osgi-jta</artifactId>
   <packaging>bundle</packaging>
   
-  <version>1.0.2-SNAPSHOT</version>
+  <version>4.9.0-SNAPSHOT</version>
   
   <!-- Parent -->
   <parent>
     <groupId>org.jboss.osgi</groupId>
     <artifactId>jboss-osgi-parent</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.7-SNAPSHOT</version>
   </parent>
 
-  <!-- Subversion -->
+  <!-- Source Control -->
   <scm>
-    <connection>scm:svn:http://anonsvn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/bundles/jta/trunk</connection>
-    <developerConnection>scm:svn:https://svn.jboss.org/repos/jbossas/projects/jboss-osgi/projects/bundles/jta/trunk</developerConnection>
-    <url>http://fisheye.jboss.com/qsearch/JBossOSGi</url>
+    <connection>scm:git:git://github.com/jbosgi/jbosgi-jta.git</connection>
+    <developerConnection>scm:git:git@github.com:jbosgi/jbosgi-jta.git</developerConnection>
+    <url>http://github.com/jbosgi/jbosgi-jta</url>
   </scm>
 
   <!-- Properties -->
   <properties>
     <version.jboss.jta.api>1.0.1.GA</version.jboss.jta.api>
-    <version.jboss.jbossts>4.6.1.GA</version.jboss.jbossts>
-    <version.jboss.osgi.spi>1.0.5</version.jboss.osgi.spi>
+    <version.jboss.jbossts>4.9.0.GA</version.jboss.jbossts>
+    <version.jboss.osgi.spi>1.0.10-SNAPSHOT</version.jboss.osgi.spi>
     <version.osgi>4.2.0</version.osgi>
   </properties>
   
@@ -60,11 +60,6 @@
     <dependency>
       <groupId>jboss.jbossts</groupId>
       <artifactId>jbossjts</artifactId>
-      <version>${version.jboss.jbossts}</version>
-    </dependency>
-    <dependency>
-      <groupId>jboss.jbossts</groupId>
-      <artifactId>jbossts-common</artifactId>
       <version>${version.jboss.jbossts}</version>
     </dependency>
     
