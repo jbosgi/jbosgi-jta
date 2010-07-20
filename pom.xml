@@ -110,10 +110,10 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Bundle-SymbolicName>${artifactId}</Bundle-SymbolicName>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Bundle-Activator>org.jboss.osgi.jta.internal.TransactionServiceActivator</Bundle-Activator>
             <Export-Package>
-              org.jboss.osgi.jta;version=${version}
+              org.jboss.osgi.jta;version=${project.version}
             </Export-Package>
             <Private-Package>org.jboss.osgi.jta.internal</Private-Package>
             <Import-Package>

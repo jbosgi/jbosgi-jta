@@ -23,11 +23,16 @@ package org.jboss.osgi.jta;
 
 //$Id$
 
+import java.io.File;
+
 import javax.transaction.TransactionManager;
 
 import org.jboss.osgi.spi.capability.Capability;
 import org.jboss.osgi.testing.OSGiRuntime;
 import org.jboss.osgi.xml.XMLParserCapability;
+
+import com.arjuna.ats.arjuna.common.Environment;
+
 
 /**
  * Adds the Transaction capability to the {@link OSGiRuntime}
@@ -46,8 +51,8 @@ public class TransactionCapability extends Capability
    {
       super(TransactionCapabilityMarker.class.getName());
       
-      //if (new File("target").exists())
-      //   addSystemProperty(Environment.OBJECTSTORE_DIR, "target/ObjectStore");
+      if (new File("target").exists())
+         addSystemProperty(Environment.OBJECTSTORE_DIR, "target/ObjectStore");
       
       addDependency(new XMLParserCapability());
       
