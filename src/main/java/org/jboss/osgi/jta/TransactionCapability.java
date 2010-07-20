@@ -27,6 +27,7 @@ import javax.transaction.TransactionManager;
 
 import org.jboss.osgi.spi.capability.Capability;
 import org.jboss.osgi.testing.OSGiRuntime;
+import org.jboss.osgi.xml.XMLParserCapability;
 
 /**
  * Adds the Transaction capability to the {@link OSGiRuntime}
@@ -47,6 +48,8 @@ public class TransactionCapability extends Capability
       
       //if (new File("target").exists())
       //   addSystemProperty(Environment.OBJECTSTORE_DIR, "target/ObjectStore");
+      
+      addDependency(new XMLParserCapability());
       
       addBundle("bundles/jboss-osgi-jta.jar");
    }

@@ -14,14 +14,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <name>JBossOSGi Bundles - JTA</name>
+  <name>JBossOSGi Transaction</name>
   <description>The JBossOSGi Transaction Service</description>
   
   <groupId>org.jboss.osgi.bundles</groupId>
   <artifactId>jboss-osgi-jta</artifactId>
   <packaging>bundle</packaging>
   
-  <version>4.9.0-SNAPSHOT</version>
+  <version>4.6.1-SNAPSHOT</version>
   
   <!-- Parent -->
   <parent>
@@ -40,9 +40,10 @@
   <!-- Properties -->
   <properties>
     <version.jboss.jta.api>1.0.1.GA</version.jboss.jta.api>
-    <version.jboss.jbossts>4.9.0.GA</version.jboss.jbossts>
+    <version.jboss.jbossts>4.6.1.GA</version.jboss.jbossts>
     <version.jboss.osgi.common>1.0.4</version.jboss.osgi.common>
     <version.jboss.osgi.spi>1.0.10-SNAPSHOT</version.jboss.osgi.spi>
+    <version.jboss.osgi.xerces>2.9.1.SP5</version.jboss.osgi.xerces>
     <version.osgi>4.2.0</version.osgi>
   </properties>
   
@@ -59,6 +60,11 @@
       <version>${version.jboss.osgi.common}</version>
     </dependency>
     <dependency>
+      <groupId>org.jboss.osgi.xerces</groupId>
+      <artifactId>jboss-osgi-xerces</artifactId>
+      <version>${version.jboss.osgi.xerces}</version>
+    </dependency>
+    <dependency>
       <groupId>org.jboss.javaee</groupId>
       <artifactId>jboss-transaction-api</artifactId>
       <version>${version.jboss.jta.api}</version>
@@ -68,7 +74,12 @@
       <artifactId>jbossjts</artifactId>
       <version>${version.jboss.jbossts}</version>
     </dependency>
-    
+    <dependency>
+      <groupId>jboss.jbossts</groupId>
+      <artifactId>jbossts-common</artifactId>
+      <version>${version.jboss.jbossts}</version>
+    </dependency>
+        
     <!-- OSGi Dependencies -->
     <dependency>
       <groupId>org.osgi</groupId>
@@ -113,26 +124,31 @@
               javax.xml.parsers, 
               org.apache.commons.logging, 
               org.jboss.osgi.spi.capability;version="[1.0,1.1)", 
-              org.jboss.osgi.spi.util;version="[1.0,1.1)", 
+              org.jboss.osgi.spi.util;version="[1.0,1.1)",
+              org.jboss.osgi.xml;version="[2.9,3.0)",
               org.osgi.framework, 
               org.w3c.dom,
               
               <!-- excludes -->
-              !javax.resource.spi, 
-              !javax.resource.spi.work, 
-              !javax.sql, 
-              !javax.swing, 
-              !javax.swing.tree, 
-              !org.apache.log4j, 
-              !org.apache.tools.*, 
-              !org.jacorb.orb*, 
-              !org.tanukisoftware.*,
-              !org.omg.*, 
+              !com.arjuna.ArjunaOTS,
+              !com.arjuna.ats.internal*,
+              !javax.resource.spi,
+              !javax.resource.spi.work,
+              !javax.sql,
+              !javax.swing,
+              !javax.swing.tree,
+              !oracle.jdbc.xa,
+              !oracle.jdbc.xa.client,
+              !oracle.sql,
+              !org.apache.log4j,
+              !org.apache.xml.serialize,
+              !org.omg.*,
             </Import-Package>
             <Embed-Transitive>true</Embed-Transitive>
             <Embed-Dependency>
               jboss-transaction-api;inline=false,
               jbossjts;inline=false,
+              jbossts-common;inline=false,
             </Embed-Dependency>
             <_exportcontents>
               javax.transaction;version=1.0.1,
