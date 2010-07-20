@@ -41,6 +41,7 @@
   <properties>
     <version.jboss.jta.api>1.0.1.GA</version.jboss.jta.api>
     <version.jboss.jbossts>4.9.0.GA</version.jboss.jbossts>
+    <version.jboss.osgi.common>1.0.4</version.jboss.osgi.common>
     <version.jboss.osgi.spi>1.0.10-SNAPSHOT</version.jboss.osgi.spi>
     <version.osgi>4.2.0</version.osgi>
   </properties>
@@ -51,6 +52,11 @@
       <groupId>org.jboss.osgi</groupId>
       <artifactId>jboss-osgi-spi</artifactId>
       <version>${version.jboss.osgi.spi}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.osgi.bundles</groupId>
+      <artifactId>jboss-osgi-common</artifactId>
+      <version>${version.jboss.osgi.common}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.javaee</groupId>
@@ -112,25 +118,21 @@
               org.w3c.dom,
               
               <!-- excludes -->
-              !com.arjuna.ArjunaOTS, 
-              !com.arjuna.ats.internal*,
               !javax.resource.spi, 
               !javax.resource.spi.work, 
               !javax.sql, 
               !javax.swing, 
               !javax.swing.tree, 
-              !oracle.jdbc.xa, 
-              !oracle.jdbc.xa.client, 
-              !oracle.sql, 
               !org.apache.log4j, 
-              !org.apache.xml.serialize, 
+              !org.apache.tools.*, 
+              !org.jacorb.orb*, 
+              !org.tanukisoftware.*,
               !org.omg.*, 
             </Import-Package>
             <Embed-Transitive>true</Embed-Transitive>
             <Embed-Dependency>
               jboss-transaction-api;inline=false,
               jbossjts;inline=false,
-              jbossts-common;inline=false,
             </Embed-Dependency>
             <_exportcontents>
               javax.transaction;version=1.0.1,
