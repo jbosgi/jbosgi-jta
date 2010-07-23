@@ -17,7 +17,7 @@
   <description>The JBossOSGi Transaction Service</description>
   
   <groupId>org.jboss.osgi.jta</groupId>
-  <artifactId>jbosgi-jta</artifactId>
+  <artifactId>jboss-osgi-jta</artifactId>
   <packaging>bundle</packaging>
   
   <version>4.6.1.SP1-SNAPSHOT</version>
@@ -40,7 +40,7 @@
   <properties>
     <version.jboss.jta.api>1.0.1.GA</version.jboss.jta.api>
     <version.jboss.jbossts>4.6.1.GA</version.jboss.jbossts>
-    <version.jboss.osgi.common>1.0.4</version.jboss.osgi.common>
+    <version.jboss.osgi.common>1.0.5-SNAPSHOT</version.jboss.osgi.common>
     <version.jboss.osgi.spi>1.0.10</version.jboss.osgi.spi>
     <version.jboss.osgi.xerces>2.9.1.SP5</version.jboss.osgi.xerces>
     <version.osgi>4.2.0</version.osgi>
@@ -54,7 +54,7 @@
       <version>${version.jboss.osgi.spi}</version>
     </dependency>
     <dependency>
-      <groupId>org.jboss.osgi.bundles</groupId>
+      <groupId>org.jboss.osgi.common</groupId>
       <artifactId>jboss-osgi-common</artifactId>
       <version>${version.jboss.osgi.common}</version>
     </dependency>
