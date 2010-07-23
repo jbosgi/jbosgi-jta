@@ -16,8 +16,8 @@
   <name>JBossOSGi Transaction</name>
   <description>The JBossOSGi Transaction Service</description>
   
-  <groupId>org.jboss.osgi.bundles</groupId>
-  <artifactId>jboss-osgi-jta</artifactId>
+  <groupId>org.jboss.osgi.jta</groupId>
+  <artifactId>jbosgi-jta</artifactId>
   <packaging>bundle</packaging>
   
   <version>4.6.1.SP1-SNAPSHOT</version>
